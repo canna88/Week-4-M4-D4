@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit&family=Merriweather:wght@300&family=Montserrat:wght@200&family=Open+Sans:wght@500&family=Poppins:ital,wght@0,100;0,200;0,300;0,700;1,400;1,500&family=Raleway:wght@600&display=swap');
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+h1{
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    margin: 40px 0 60px 0;
+}
+
+#search-input{
+    width: 60%;
+    max-width: 400px;
+    padding: 10px 20px;
+    border: none;
+    box-shadow: 0 0 6px rgb(0, 0, 0,0.2);
+    border-radius: 5px;
+    font-size: 18px;
+    color: #333;
+}
+
+form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 60px;
+}
+
+#search-input{
+    width: 60%;
+    max-width: 400px;
+    padding: 10px 20px;
+    border: none;
+    box-shadow: 0 0 6px rgb(0, 0, 0,0.2);
+    border-radius: 5px;
+    font-size: 18px;
+    color: #333;
+}
+
+#button-search {
+    padding: 10px 20px;
+    background-color: #138065;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    box-shadow: 0 0 6px rgb(0, 0, 0,0.2);
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+.card {
+    box-sizing: border-box;
+    width: 30%;
+    margin: 10px;
+    border-radius: 20px;
+    border: none;
+}
+
+.card:hover {
+cursor:pointer;
+}
+
+.card img{
+    width: 90%;
+    margin: 20px;
+    border-radius: 20px;
+}
+
+
+.search-results{
+    display: flex;
+    box-sizing: border-box;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-bottom: 60px;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+#show-more-button {
+    background-color: #008cba;
+    font-size: 18px;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    display: block;
+    margin: 30px auto;
+    border-radius: 5px;
+    cursor: pointer;
+    display: none;
+}
+
+@media screen and (max-width:768px) {
+    .search-results {
+        padding: 20px;
+    }
+    .search-result {
+        width: 45%;
+    }
+}
+
+@media screen and (max-width:480px) {
+    .search-result {
+        width: 100%;
+    }
+}

@@ -1,0 +1,25 @@
+- [DONE] fare lista dei metodi degli array
+- [DONE] studiare l'API fornita per capire come vengono fornite le immagini
+- [DONE] collegarsi all'API dal file javascript e incominciare a scaricare i dati
+- creare BRANCH per HTML e CSS
+- compilare il file JS
+
+- HTML
+    - sezioni
+        - sezione card
+        - sezione carrello
+        - sezione filtri
+    - elementi
+
+- CSS
+
+- JAVACSRIPT
+    - renderizza tutti i template literars e .forEach o .map
+    - assicurati che ci sia un pulsante "Aggiungi al carrello"
+        - al click: aggiungi il libro alla lista del carrello
+        - al click: cambia lo stile alla card
+    - aggiungi un input di testo come filtro .filter()
+    - dai la possibilità all'utente di cancellare libri dal carrello
+    - conta gli elementi nel carrello e mostra il totale .reduce
+    - crea un pulsante per svuotare il carrello
+    - click pulsante "salta"
