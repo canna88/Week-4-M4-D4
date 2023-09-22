@@ -17,6 +17,10 @@ function loadImages(link) {
 }
 
 
+function toggleCart(){
+  document.querySelector('.sidecart').classList.toggle('open-cart');
+}
 
+toggleCart();
 
 loadImages(linkBooks) 

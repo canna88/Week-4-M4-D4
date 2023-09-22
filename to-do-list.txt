@@ -10,10 +10,16 @@
         - sezione carrello
         - sezione filtri
     - elementi
+        - riattivare classe .open-cart:before per rendere oscura la pagina
 
 - CSS
 
 - JAVACSRIPT
+    - creazione array:
+        - books totali
+        - books nella visualizzazione
+        - books eliminati
+        - books nel carrello
     - renderizza tutti i template literars e .forEach o .map
     - assicurati che ci sia un pulsante "Aggiungi al carrello"
         - al click: aggiungi il libro alla lista del carrello

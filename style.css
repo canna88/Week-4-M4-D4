@@ -33,33 +33,10 @@ form{
     margin-bottom: 60px;
 }
 
-#search-input{
-    width: 60%;
-    max-width: 400px;
-    padding: 10px 20px;
-    border: none;
-    box-shadow: 0 0 6px rgb(0, 0, 0,0.2);
-    border-radius: 5px;
-    font-size: 18px;
-    color: #333;
-}
-
-#button-search {
-    padding: 10px 20px;
-    background-color: #138065;
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
-    box-shadow: 0 0 6px rgb(0, 0, 0,0.2);
-    border-radius: 5px;
-    margin-left: 10px;
-}
 
 .card {
-    box-sizing: border-box;
     width: 30%;
-    margin: 10px;
+    box-sizing: border-box;
     border-radius: 20px;
     border: none;
 }
@@ -78,30 +55,93 @@ cursor:pointer;
 .search-results{
     display: flex;
     box-sizing: border-box;
-    justify-content: center;
+    justify-content: space-around;
+    align-items: start;
     flex-wrap: wrap;
     max-width: 1200px;
     margin: 0 auto;
-    margin-bottom: 60px;
     width: 100%;
     height: 100%;
     border-radius: 5px;
     overflow: hidden;
 }
 
-#show-more-button {
-    background-color: #008cba;
-    font-size: 18px;
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    display: block;
-    margin: 30px auto;
-    border-radius: 5px;
-    cursor: pointer;
-    display: none;
-}
+
+/* Cart */
+.sidecart{
+    background-color: #1380659c;
+    width: 320px;
+    min-width: 320px;
+    height: 100vh;
+    position: fixed;
+    top: 0px;
+    overflow:auto !important;
+    right: -320px;
+    z-index: 9000;
+    transition: 0.2s ease;
+    left: 0px;
+  }
+  
+  @media(max-width: 400px){
+    .sidecart{
+      width: 100vw;
+      right: -100vw;
+    }
+  }
+  
+
+  .card-cart{
+    border-radius: 20px;
+    background-color: white;
+    margin: 20px;
+  }
+
+  .product-title, .product-quantity, .product-price {
+    color: black;
+  }
+
+  .open-cart{
+    left: 0px;
+  }
+
+  /* .open-cart:before{
+    content: '';
+    position: fixed;
+    top: 0px;
+    width: 100vw;
+    height: 100vh;
+    left: 0px;
+    pointer-events: none;
+    background-color: black;
+    opacity: 0.5;
+    z-index: -1;
+  }
+   */
+
+  .product-title:after, .product-quantity:after, .product-price:after{
+    font-weight: bold;
+    color: red;
+    content: 'valore';
+    white-space: nowrap;
+    position: absolute;
+    z-index: 10;
+    margin-left: 10px;
+  }
+
+/* CLASSI POTENZIALMENTE INUTILI */
+
+    /* .product-quantity{
+    position: relative;
+  } 
+  
+  
+.sidecart-price > div{
+    margin: auto;
+    width: 100%;
+    white-space: nowrap;
+  }
+   */
+
 
 @media screen and (max-width:768px) {
     .search-results {
