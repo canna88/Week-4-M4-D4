@@ -2,9 +2,9 @@ const linkBooks = "https://striveschool-api.herokuapp.com/books"
 
 
 function loadBooks (bookList) {
- const bookprice = this[0].price
+ const bookprice = bookList
 
-  console.log(bookprice)
+  
 }
 
 function loadImages(link) {

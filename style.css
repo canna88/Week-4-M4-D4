@@ -118,10 +118,18 @@ cursor:pointer;
   }
    */
 
-  .product-title:after, .product-quantity:after, .product-price:after{
+  .products-title-val, .products-quantity-val, .products-price-val{
     font-weight: bold;
-    color: red;
-    content: 'valore';
+    color: black;
+    white-space: nowrap;
+    position: absolute;
+    z-index: 10;
+    margin-left: 10px;
+  }
+
+  #products-total, #products-value{
+    font-weight: bold;
+    color: black;
     white-space: nowrap;
     position: absolute;
     z-index: 10;

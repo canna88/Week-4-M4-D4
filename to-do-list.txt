@@ -1,8 +1,7 @@
 - [DONE] fare lista dei metodi degli array
 - [DONE] studiare l'API fornita per capire come vengono fornite le immagini
 - [DONE] collegarsi all'API dal file javascript e incominciare a scaricare i dati
-- creare BRANCH per HTML e CSS
-- compilare il file JS
+- [DONE] creare BRANCH per HTML e CSS
 
 - HTML
     - sezioni
