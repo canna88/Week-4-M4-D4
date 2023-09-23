@@ -33,6 +33,18 @@ form{
     margin-bottom: 60px;
 }
 
+#reload-button {
+  padding: 10px 20px;
+  background-color: #138065;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  box-shadow: 0 0 6px rgb(0, 0, 0,0.2);
+  border-radius: 5px;
+  margin-left: 10px;
+}
+
 .card-container {
     display: flex;
     justify-content: center;
@@ -67,10 +79,16 @@ cursor:pointer;
     border-radius: 20px;
 }
 
-.buy-button, .del-button {
+.buy-button, .jump-button {
     box-sizing: border-box;
     margin: 0px;
     width:48%;
+}
+
+.del-button, .del-all-button {
+    box-sizing: border-box;
+    margin: 0px;
+    width:100%;
 }
 
 
@@ -124,6 +142,10 @@ cursor:pointer;
 
   .open-cart{
     left: 0px;
+  }
+
+  .buy-card {
+    border: 2px solid red;
   }
 
   /* .open-cart:before{
