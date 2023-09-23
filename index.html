@@ -19,6 +19,8 @@
   <section id="filter-books">
     <form>
       <input id="search-input" type="text" placeholder="Filter your books">
+      <button id="reload-button" type="button" class="btn btn-primary">Reload all books</button>
+
     </form>
 
   </section>
@@ -27,94 +29,83 @@
 
     <!-- <button class="btn btn-primary" onclick="toggleCart()" >Toggle Cart</button> -->
 
-    <div class="sidecart text-center">
+
+    <div class="sidecart bg-dark text-center p-4">
+      <div class="p-2">
+        <button type="button" class="toggle-cart-button btn" onclick="toggleCart()">
+          <i class="bi bi-bag-fill"></i>
+        </button>
+      </div>
+
+
+
+      <div class="cart-title text-light h4 m-0 px-4 text-center">
+        Your cart is empty
+      </div>
+
+      <div class="cart-header">
+        <!-- <button class="btn btn-warning my-3 del-all-button" onclick="rimuoviTutto()" data-action="remove">Rimuovi
+          tutto</button>
+
+        <div class="cart-results my-3">
+          <div class="text-light h6 text-left mx-3">Number of products:
+            <span id="products-total"></span>
+          </div>
+          <div class="text-light h6 text-left mx-3">Final value:
+            <span id="products-value"></span>
+          </div>
+        </div> -->
+      </div>
 
       <ul class="nav flex-column">
-
-        <div class="text-light h4 m-0 px-4 text-center">
-          Cart
-        </div>
-
         <li class="card-cart nav-link d-flex flex-wrap flex-row my-3">
-          <div class="col-4 p-0">
-            <img class="img-fluid" src="https://images-na.ssl-images-amazon.com/images/I/91xrEMcvmQL.jpg" alt="">
+          <div class="col-4 p-0 cart-img">
+            <img class="img-fluid" src='https://images-na.ssl-images-amazon.com/images/I/91xrEMcvmQL.jpg' alt="">
           </div>
-          <div class="col-8 text-light justify-content-around align-items-start d-flex flex-column">
-            <div class="product-title m-0 p-0">Title: </div>
-            <div class="product-quantity m-0 p-0">Quantity: </div>
-            <div class="product-price m-0 p-0">Price: </div>
+          <div class="col-8 text-light d-flex align-items-start flex-column m-0 h-auto">
+
+            <div class="product-title m-0 p-0">Title:</div>
+            <span class="products-title-val mb-3">${nuovoLibroCart.title}</span>
+
+            <div class="product-quantity m-0 p-0">Quantity:</div>
+            <span class="products-quantity-val mb-3">1</span>
+
+            <div class="product-price m-0 p-0">Price:</div>
+            <span class="products-price-val mb-3">${nuovoLibroCart.price}</span>
           </div>
+          <p class="book-asin d-none">${nuovoLibroCart.asin}</p>
+          <button class="btn btn-danger mt-2 del-button" onclick="rimuovi(this)" data-action="remove">Rimuovi</button>
         </li>
-
-
-
-        <li class="card-cart nav-link d-flex flex-wrap flex-row my-3">
-          <div class="col-4 p-0">
-            <img class="img-fluid" src="https://images-na.ssl-images-amazon.com/images/I/91xrEMcvmQL.jpg" alt="">
-          </div>
-          <div class="col-8 text-light justify-content-around align-items-start d-flex flex-column">
-            <div class="product-title m-0 p-0">Title: </div>
-            <div class="product-quantity m-0 p-0">Quantity: </div>
-            <div class="product-price m-0 p-0">Price: </div>
-          </div>
-        </li>
-
 
       </ul>
 
-      <div class="products-total text-light h6 text-left mx-3">Number of products:
-        <span id="products-total" class="text-success">R$ 7.200,00</span>
-      </div>
-      <div class="products-value text-light h6 text-left mx-3">Final value:
-        <span id="products-value" class="text-success">R$ 20,00</span>
-      </div>
 
-      <!-- <div class="p-2">
-        <button type="button" class="btn btn-success w-100">Checkout</button>
-      </div> -->
 
     </div>
+
   </section>
 
   <section id="main-books">
     <div class="search-results row">
 
-      <div class="card">
-        <img src="https://images-na.ssl-images-amazon.com/images/I/91xrEMcvmQL.jpg" class="card-img-top"
-          alt="Immagine del Libro">
-        <div class="card-body">
-          <h5 class="card-title">Titolo del Libro</h5>
-          <p class="card-text">Autore del Libro</p>
-          <p class="card-text">Prezzo: $XX.XX</p>
-          <button class="btn btn-primary mt-2">Acquista</button>
-          <button class="btn btn-danger mt-2">Rimuovi</button>
+      <div class="card-container">
+        <div class="card card-load mb-5">
+          <img src='https://images-na.ssl-images-amazon.com/images/I/91xrEMcvmQL.jpg' class="card-img-top"
+            alt="Immagine del Libro">
+          <div class="card-body">
+            <h5 class="card-title book-title">${title}</h5>
+            <p class="card-text book-author">${category}</p>
+            <div class="m-0 card-info">
+              <p class="card-text book-price">${price}</p>
+              <p class="book-asin d-none">${asin}</p>
+
+              <button class="btn btn-primary mt-2 buy-button" onclick="acquista(this)"
+                data-action="buy">Acquista</button>
+              <button class="btn btn-danger mt-2 jump-button" onclick="salta(this)" data-action="remove">salta</button>
+            </div>
+          </div>
         </div>
       </div>
-
-      <div class="card">
-        <img src="https://images-na.ssl-images-amazon.com/images/I/91xrEMcvmQL.jpg" class="card-img-top"
-          alt="Immagine del Libro">
-        <div class="card-body">
-          <h5 class="card-title">Titolo del Libro</h5>
-          <p class="card-text">Autore del Libro</p>
-          <p class="card-text">Prezzo: $XX.XX</p>
-          <button class="btn btn-primary mt-2">Acquista</button>
-          <button class="btn btn-danger mt-2">Rimuovi</button>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="https://images-na.ssl-images-amazon.com/images/I/91xrEMcvmQL.jpg" class="card-img-top"
-          alt="Immagine del Libro">
-        <div class="card-body">
-          <h5 class="card-title">Titolo del Libro</h5>
-          <p class="card-text">Autore del Libro</p>
-          <p class="card-text">Prezzo: $XX.XX</p>
-          <button class="btn btn-primary mt-2">Acquista</button>
-          <button class="btn btn-danger mt-2">Rimuovi</button>
-        </div>
-      </div>
-
     </div>
 
   </section>

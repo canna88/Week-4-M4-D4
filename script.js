@@ -4,6 +4,8 @@ const sidecartDiv = document.querySelector(".nav");
 const linkBooks = "https://striveschool-api.herokuapp.com/books";
 const searchInput = document.getElementById("search-input");
 const reloadButton = document.getElementById("reload-button");
+const cartHeader = document.querySelector(".cart-header");
+const cartTitle = document.querySelector(".cart-title");
 
 // Pulisco gli elemnti che mi interessano nel DOM
 searchResultDiv.innerHTML = "";
@@ -28,14 +30,25 @@ function filterBooks() {
 
 function toggleCart() {
   document.querySelector(".sidecart").classList.toggle("open-cart");
+  document
+    .querySelector(".toggle-cart-button")
+    .classList.toggle("toggle-cart-button-open");
+    // Aggiungi e rimuovi la classe di rotazione al pulsante del carrello
+    const cartButton = document.querySelector(".toggle-cart-button");
+    cartButton.classList.add("rotate-center");
+    setTimeout(() => {
+      cartButton.classList.remove("rotate-center");
+    }, 1000);
 }
 
 function sumPrices(products) {
   const totalPrice = products.reduce((accumulator, currentProduct) => {
     return accumulator + currentProduct.price;
   }, 0);
+  const formattedTotalPrice = totalPrice.toFixed(2);
+  const totalPriceWithEuroSymbol = `€ ${formattedTotalPrice}`;
 
-  return totalPrice;
+  return totalPriceWithEuroSymbol; // Arrotonda a due decimali e restituisce una stringa
 }
 
 // Funzione Pulsante "acquista"
@@ -51,31 +64,60 @@ function acquista(button) {
       (libro) => libro.asin === asinCode
     );
 
+    if (cartBooks.length === 0) {
+      cartTitle.innerText = "Cart";
+      cartHeader.innerHTML =
+        /*html*/
+        `
+        <button class="btn btn-warning my-3 del-all-button" onclick="rimuoviTutto()" data-action="remove">Rimuovi
+          tutto</button>
+
+        <div class="cart-results my-3">
+        <div class="text-light h6 text-left mx-3">Final value:
+        <span id="products-total"></span>
+      </div>
+          <div class="text-light h6 text-left mx-3">Number of products:
+            <span id="products-value"></span>
+            
+          </div>
+
+        </div>
+      `;
+    }
+
     cartBooks.push(nuovoLibroCart);
+
+    // Aggiungi e rimuovi la classe di rotazione al pulsante del carrello
+    const cartButton = document.querySelector(".toggle-cart-button");
+    cartButton.classList.add("rotate-center");
+    setTimeout(() => {
+      cartButton.classList.remove("rotate-center");
+    }, 600);
 
     console.log("aggiungi", cartBooks);
     card.classList.toggle("buy-card");
     sidecartDiv.innerHTML +=
       /*html*/
       `
-        <li class="card-cart nav-link d-flex flex-wrap flex-row my-3">
-          <div class="col-4 p-0">
-            <img class="img-fluid" src=${nuovoLibroCart.img} alt="">
-          </div>
-          <div class="col-8 text-light justify-content-around align-items-start d-flex flex-column">
-            <div class="product-title m-0 p-0">Title:
-              <span class="products-title-val">${nuovoLibroCart.title}</span>
-            </div>
-            <div class="product-quantity m-0 p-0">Quantity:
-              <span class="products-quantity-val">1</span>
-            </div>
-            <div class="product-price m-0 p-0">Price:
-              <span class="products-price-val">${nuovoLibroCart.price}</span>
-            </div>
-          </div>
-          <p class="book-asin d-none">${nuovoLibroCart.asin}</p>
-          <button class="btn btn-danger mt-2 del-button" onclick="rimuovi(this)" data-action="remove">Rimuovi</button>
-        </li>
+      <li class="card-cart nav-link d-flex flex-wrap flex-row my-3">
+      <div class="col-4 p-0">
+        <img class="cart-img img-fluid" src=${nuovoLibroCart.img}
+          alt="">
+      </div>
+      <div class="col-8 text-light d-flex align-items-start flex-column m-0">
+
+        <div class="product-title m-0 p-0">Title:</div>
+        <span class="products-title-val mb-3">${nuovoLibroCart.title}</span>
+
+        <div class="product-quantity m-0 p-0">Quantity:</div>
+        <span class="products-quantity-val mb-3">1</span>
+
+        <div class="product-price m-0 p-0">Price:</div>
+        <span class="products-price-val mb-3">€ ${nuovoLibroCart.price}</span>
+      </div>
+      <p class="book-asin d-none">${nuovoLibroCart.asin}</p>
+      <button class="btn btn-danger mt-2 del-button" onclick="rimuovi(this)" data-action="remove">Rimuovi</button>
+    </li>
     `;
   }
 
@@ -87,8 +129,7 @@ function acquista(button) {
 
 function salta(button) {
   const card = button.closest(".card-container"); // Trova la card genitore
-  card.remove()
-
+  card.remove();
 }
 
 function rimuovi(button) {
@@ -112,6 +153,11 @@ function rimuovi(button) {
   const valoreCarrello = document.getElementById("products-total");
   numeroProdotti.innerText = cartBooks.length;
   valoreCarrello.innerText = sumPrices(cartBooks);
+
+  if (cartBooks.length === 0) {
+    cartHeader.innerHTML = "";
+    cartTitle.innerText = "Your cart is empty";
+  }
 }
 
 function rimuoviTutto() {
@@ -128,6 +174,27 @@ function rimuoviTutto() {
   const valoreCarrello = document.getElementById("products-total");
   numeroProdotti.innerText = cartBooks.length;
   valoreCarrello.innerText = sumPrices(cartBooks);
+
+  console.log(cartBooks.length);
+
+  if (cartBooks.length === 0) {
+    cartHeader.innerHTML = "";
+    cartTitle.innerText = "Your cart is empty";
+  }
+}
+
+function ripristinaComprati() {
+  const allCard = document.querySelectorAll(".card");
+
+  for (const productInCart of cartBooks) {
+    const asinCode = productInCart.asin;
+    for (const card of allCard) {
+      const cardAsin = card.querySelector(".book-asin").textContent; // Ottieni il testo del .book-asin
+      if (cardAsin === asinCode) {
+        card.classList.add("buy-card");
+      }
+    }
+  }
 }
 
 // Funzioni per caricare i libri e assegnare l'array totale dei libri
@@ -136,6 +203,8 @@ function loadBooks(bookList) {
 
   bookList.forEach((element) => {
     const { title, img, price, category, asin } = element;
+    const formattedPrice = `€ ${price.toFixed(2)}`;
+
     searchResultDiv.innerHTML +=
       /*html*/
       `
@@ -144,14 +213,13 @@ function loadBooks(bookList) {
           <img src=${img} class="card-img-top"
             alt="Immagine del Libro">
           <div class="card-body">
-            <div class="m-0">
-              <h5 class="card-title book-title">${title}</h5>
-              <p class="card-text book-author">${category}</p>
-              <p class="card-text book-price">${price}</p>
-              <p class="book-asin d-none">${asin}</p>
-            </div>
+          <h5 class="card-title book-title">${title}</h5>
+          <p class="card-text book-author">${category}</p>
+            <div class="m-0 card-info">
 
-            <div class="m-0">
+              <p class="card-text book-price">${formattedPrice}</p>
+              <p class="book-asin d-none">${asin}</p>
+
               <button class="btn btn-primary mt-2 buy-button" onclick="acquista(this)" data-action="buy">Acquista</button>
               <button class="btn btn-danger mt-2 jump-button" onclick="salta(this)" data-action="remove">salta</button>
             </div>
@@ -160,6 +228,9 @@ function loadBooks(bookList) {
     </div>
    `;
   });
+  // Dopo aver caricato il contenuto
+
+  ripristinaComprati();
 }
 
 function getBooks(link) {
@@ -177,9 +248,9 @@ function getBooks(link) {
 
 // FUNZIONI: ESECUZIONE
 
-toggleCart();
 getBooks(linkBooks);
 searchInput.addEventListener("input", filterBooks);
 reloadButton.addEventListener("click", function () {
   getBooks(linkBooks);
+  searchInput.value = "";
 });

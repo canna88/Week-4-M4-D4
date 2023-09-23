@@ -8,10 +8,19 @@
         - [DONE] sezione card
         - [DONE] sezione carrello
         - [DONE] sezione filtri
-    - elementi
+    - [DONE] elementi
         - riattivare classe .open-cart:before per rendere oscura la pagina
 
 - CSS
+    - [DONE] nascondere rimuovi rimuoviTutto (di conseguenze nel js)
+    - [DONE] nascondere rimuovi totale e valore prodotti (di conseguenze nel js)
+    - animazione comprato
+        - acquisto
+        - rimuovi singolo
+        - rimuovo tutto
+    - animazione caricamento card
+    - animazione carrello compari/scompari
+
 
 - JAVACSRIPT
     - [DONE] creazione array:
@@ -24,11 +33,11 @@
         - [DONE] al click: aggiungi il libro alla lista del carrello
         - [DONE] al click: cambia lo stile alla card
     - [DONE] dai la possibilità all'utente di cancellare libri dal carrello
-    
     - [DONE] crea un pulsante per svuotare il carrello
-    
     - [DONE] nel pulsante remove di ogni card-cart: conta gli elementi nel carrello e mostra il totale .reduce
-
     - [DONE] click pulsante "salta"
-    
     - [DONE] aggiungi un input di testo come filtro .filter()
+    - migliorare con chatGPT codice JS
+
+
+
