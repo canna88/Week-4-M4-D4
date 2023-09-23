@@ -20,7 +20,7 @@
         - books eliminati
         - books nel carrello
     - renderizza tutti i template literars e .forEach o .map
-    - assicurati che ci sia un pulsante "Aggiungi al carrello"
+    - [DONE] assicurati che ci sia un pulsante "Aggiungi al carrello"
         - al click: aggiungi il libro alla lista del carrello
         - al click: cambia lo stile alla card
     - aggiungi un input di testo come filtro .filter()
