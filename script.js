@@ -19,28 +19,31 @@ let cartBooks = [];
 
 //  FUNZIONI: DICHIARAZIONE
 
+// Funzione per filtrare e visualizzare i libri in base alla ricerca dell'utente
 function filterBooks() {
   const searchText = searchInput.value.toLowerCase(); // Testo inserito nell'input in minuscolo
   visibleBooks = totalBooks.filter((book) =>
     book.title.toLowerCase().includes(searchText)
   );
   searchResultDiv.innerHTML = ""; // Svuota la visualizzazione attuale dei libri
-  loadBooks(visibleBooks); // Carica i libri filtrati
+  loadBooks(visibleBooks); // Carica i libri filtrat
 }
 
+// Funzione per aprire/chiudere il carrello
 function toggleCart() {
   document.querySelector(".sidecart").classList.toggle("open-cart");
   document
     .querySelector(".toggle-cart-button")
     .classList.toggle("toggle-cart-button-open");
-    // Aggiungi e rimuovi la classe di rotazione al pulsante del carrello
-    const cartButton = document.querySelector(".toggle-cart-button");
-    cartButton.classList.add("rotate-center");
-    setTimeout(() => {
-      cartButton.classList.remove("rotate-center");
-    }, 1000);
+  // Aggiungi e rimuovi la classe di rotazione al pulsante del carrello
+  const cartButton = document.querySelector(".toggle-cart-button");
+  cartButton.classList.add("rotate-center");
+  setTimeout(() => {
+    cartButton.classList.remove("rotate-center");
+  }, 1000);
 }
 
+// Funzione per calcolare il prezzo totale dei prodotti nel carrello
 function sumPrices(products) {
   const totalPrice = products.reduce((accumulator, currentProduct) => {
     return accumulator + currentProduct.price;
@@ -51,7 +54,7 @@ function sumPrices(products) {
   return totalPriceWithEuroSymbol; // Arrotonda a due decimali e restituisce una stringa
 }
 
-// Funzione Pulsante "acquista"
+// Funzione chiamata quando l'utente clicca sul pulsante "Acquista" su un libro
 function acquista(button) {
   const card = button.closest(".card"); // Trova la card genitore
   const asinCode = card.querySelector(".book-asin").textContent;
@@ -127,11 +130,13 @@ function acquista(button) {
   valoreCarrello.innerText = sumPrices(cartBooks);
 }
 
+// Funzione chiamata quando l'utente clicca sul pulsante "Salta" su un libro
 function salta(button) {
   const card = button.closest(".card-container"); // Trova la card genitore
   card.remove();
 }
 
+// Funzione chiamata quando l'utente rimuove un libro dal carrello
 function rimuovi(button) {
   const liElement = button.closest("li"); // Trova l'elemento <li> genitore
   const asinCode = liElement.querySelector(".book-asin").textContent;
@@ -160,6 +165,7 @@ function rimuovi(button) {
   }
 }
 
+// Funzione chiamata quando l'utente rimuove tutti i libri dal carrello
 function rimuoviTutto() {
   sidecartDiv.innerHTML = "";
   console.log("Prima elimina tutti: ", cartBooks);
@@ -183,6 +189,7 @@ function rimuoviTutto() {
   }
 }
 
+// Funzione per ripristinare lo stato "acquistato" dei libri nel carrello
 function ripristinaComprati() {
   const allCard = document.querySelectorAll(".card");
 
@@ -197,7 +204,7 @@ function ripristinaComprati() {
   }
 }
 
-// Funzioni per caricare i libri e assegnare l'array totale dei libri
+// Funzione per caricare i libri iniziali dalla API e visualizzarli
 function loadBooks(bookList) {
   searchResultDiv.innerHTML = "";
 
@@ -233,6 +240,7 @@ function loadBooks(bookList) {
   ripristinaComprati();
 }
 
+// Funzione per ottenere i libri dalla API iniziale
 function getBooks(link) {
   fetch(link)
     .then((response) => response.json())
@@ -241,6 +249,19 @@ function getBooks(link) {
       visibleBooks = data;
       loadBooks(data);
     })
+    .then(() => {
+      const sectionList = document.querySelectorAll("section");
+      let time = 0; // Inizializza il tempo a 0
+    
+      sectionList.forEach((element) => {
+        // Rimuovi la classe .document-load con un ritardo crescente
+        setTimeout(() => {
+          element.classList.remove("document-load");
+        }, time);
+    
+        time += 500; // Incrementa il tempo per il prossimo elemento
+      });
+    })
     .catch((error) => {
       console.log(error.message);
     });
@@ -248,9 +269,9 @@ function getBooks(link) {
 
 // FUNZIONI: ESECUZIONE
 
-getBooks(linkBooks);
-searchInput.addEventListener("input", filterBooks);
-reloadButton.addEventListener("click", function () {
-  getBooks(linkBooks);
-  searchInput.value = "";
+getBooks(linkBooks); // Chiamiamo la funzione getBooks() per ottenere e visualizzare i libri iniziali dalla API
+searchInput.addEventListener("input", filterBooks); // Aggiungiamo un ascoltatore di eventi all'input di ricerca per filtrare i libri in tempo reale
+reloadButton.addEventListener("click", function () { // Aggiungiamo un ascoltatore di eventi al pulsante "Reload" per ricaricare i libri dalla API
+  getBooks(linkBooks);   // Chiamiamo nuovamente la funzione getBooks() per ricaricare i libri
+  searchInput.value = ""; // Ripristiniamo il valore dell'input di ricerca a una stringa vuota
 });

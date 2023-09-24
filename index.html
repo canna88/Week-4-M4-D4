@@ -10,108 +10,51 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
     integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="style.css" />
-  <title>Search Image Engine</title>
+  <title>Bookstore</title>
 </head>
 
 <body>
-  <h1>Your bookstore</h1>
+  <section id="title" class="document-load">
+    <h1>Your bookstore</h1>
+  </section>
+  
+  <section id="filter-books" class="document-load">
 
-  <section id="filter-books">
     <form>
       <input id="search-input" type="text" placeholder="Filter your books">
       <button id="reload-button" type="button" class="btn btn-primary">Reload all books</button>
-
     </form>
 
   </section>
 
-  <section id="cart-books">
+  <section id="cart-books"  class="document-load">
 
-    <!-- <button class="btn btn-primary" onclick="toggleCart()" >Toggle Cart</button> -->
-
-
-    <div class="sidecart bg-dark text-center p-4">
+   <div class="sidecart bg-dark text-center p-4">
       <div class="p-2">
         <button type="button" class="toggle-cart-button btn" onclick="toggleCart()">
           <i class="bi bi-bag-fill"></i>
         </button>
       </div>
 
-
-
       <div class="cart-title text-light h4 m-0 px-4 text-center">
         Your cart is empty
       </div>
 
       <div class="cart-header">
-        <!-- <button class="btn btn-warning my-3 del-all-button" onclick="rimuoviTutto()" data-action="remove">Rimuovi
-          tutto</button>
-
-        <div class="cart-results my-3">
-          <div class="text-light h6 text-left mx-3">Number of products:
-            <span id="products-total"></span>
-          </div>
-          <div class="text-light h6 text-left mx-3">Final value:
-            <span id="products-value"></span>
-          </div>
-        </div> -->
       </div>
 
       <ul class="nav flex-column">
-        <li class="card-cart nav-link d-flex flex-wrap flex-row my-3">
-          <div class="col-4 p-0 cart-img">
-            <img class="img-fluid" src='https://images-na.ssl-images-amazon.com/images/I/91xrEMcvmQL.jpg' alt="">
-          </div>
-          <div class="col-8 text-light d-flex align-items-start flex-column m-0 h-auto">
-
-            <div class="product-title m-0 p-0">Title:</div>
-            <span class="products-title-val mb-3">${nuovoLibroCart.title}</span>
-
-            <div class="product-quantity m-0 p-0">Quantity:</div>
-            <span class="products-quantity-val mb-3">1</span>
-
-            <div class="product-price m-0 p-0">Price:</div>
-            <span class="products-price-val mb-3">${nuovoLibroCart.price}</span>
-          </div>
-          <p class="book-asin d-none">${nuovoLibroCart.asin}</p>
-          <button class="btn btn-danger mt-2 del-button" onclick="rimuovi(this)" data-action="remove">Rimuovi</button>
-        </li>
-
       </ul>
 
-
-
     </div>
 
   </section>
 
-  <section id="main-books">
+  <section id="main-books"  class="document-load">
     <div class="search-results row">
-
-      <div class="card-container">
-        <div class="card card-load mb-5">
-          <img src='https://images-na.ssl-images-amazon.com/images/I/91xrEMcvmQL.jpg' class="card-img-top"
-            alt="Immagine del Libro">
-          <div class="card-body">
-            <h5 class="card-title book-title">${title}</h5>
-            <p class="card-text book-author">${category}</p>
-            <div class="m-0 card-info">
-              <p class="card-text book-price">${price}</p>
-              <p class="book-asin d-none">${asin}</p>
-
-              <button class="btn btn-primary mt-2 buy-button" onclick="acquista(this)"
-                data-action="buy">Acquista</button>
-              <button class="btn btn-danger mt-2 jump-button" onclick="salta(this)" data-action="remove">salta</button>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
 
   </section>
-
-
-
 
   <script src="script.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"

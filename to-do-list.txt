@@ -37,7 +37,7 @@
     - [DONE] nel pulsante remove di ogni card-cart: conta gli elementi nel carrello e mostra il totale .reduce
     - [DONE] click pulsante "salta"
     - [DONE] aggiungi un input di testo come filtro .filter()
-    - migliorare con chatGPT codice JS
+    - migliorare codice JS
 
 
 
