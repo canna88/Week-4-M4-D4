@@ -132,6 +132,13 @@ form {
   width: 48%;
 }
 
+.details-button {
+  box-sizing: border-box;
+  margin: 0px;
+  width: 100%;
+}
+
+
 /* Stile dei pulsanti di rimozione */
 .del-button,
 .del-all-button {

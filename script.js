@@ -227,9 +227,11 @@ function loadBooks(bookList) {
               <p class="card-text book-price">${formattedPrice}</p>
               <p class="book-asin d-none">${asin}</p>
 
-              <button class="btn btn-primary mt-2 buy-button" onclick="acquista(this)" data-action="buy">Acquista</button>
-              <button class="btn btn-danger mt-2 jump-button" onclick="salta(this)" data-action="remove">salta</button>
-            </div>
+              <button class="btn btn-primary mt-2 buy-button" onclick="acquista(this)" data-action="buy">Buy</button>
+              <button class="btn btn-danger mt-2 jump-button" onclick="salta(this)" data-action="remove">Skip</button>
+              <a href="/dettagli.html?id=${asin}" class="btn btn-info mt-2 details-button" data-action="remove">Details</a>
+
+              </div>
           </div>
         </div>
     </div>
@@ -266,6 +268,7 @@ function getBooks(link) {
       console.log(error.message);
     });
 }
+
 
 // FUNZIONI: ESECUZIONE
 
