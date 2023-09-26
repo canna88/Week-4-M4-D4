@@ -28,7 +28,14 @@ function loadBookDetails(data) {
 }
 
 function getBooksDetals(link) {
-  
+  searchResultDiv.innerHTML = 
+  /*html*/
+  ` 
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+  `
+
   fetch(link)
     .then((response) => response.json())
     .then((data) => {
